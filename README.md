@@ -1,5 +1,12 @@
 ![hs-shndrs](https://github.com/user-attachments/assets/af028af3-2397-488e-ba81-126c1227527c)
 # HandyStorage
+[![codebeat badge](https://codebeat.co/badges/889e7bd9-5986-4bf1-886c-befec23ee93e)](https://codebeat.co/projects/github-com-shndrs-handystorage-main)
+![Cocoapods Version](https://img.shields.io/cocoapods/v/HandyStorage)
+![swift-version](https://img.shields.io/badge/Swift-6-blueviolet.svg)
+![swift package manager](https://img.shields.io/badge/SwiftPackageManager-compatible-000000.svg)
+![cocoapods](https://img.shields.io/badge/CocoaPods-compatible-000000.svg)
+![GitHub License](https://img.shields.io/github/license/shndrs/HandyStorage)
+
 In this project i wanna build an useful storage with UserDefault which is super easy to deal with and on top of that you can save `Codable` Objects
 ### HOW COOL IS THAT! 🙂
 # Usage
