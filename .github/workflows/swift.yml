@@ -21,5 +21,5 @@ jobs:
           swift-version: '5.7'
       - name: Build and Test
         run: |
-          swift build
-          swift test
+          swift build -v
+          swift test -v
