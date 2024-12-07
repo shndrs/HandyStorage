@@ -12,36 +12,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout source code
+      - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Download and Install Latest Swift Snapshot
+      - name: Set up Swift
+        uses: swift-actions/setup-swift@v1
+        with:
+          swift-version: '5.7'
+      - name: Build and Test
         run: |
-          # Fetch the latest snapshot URL for Ubuntu 22.04
-          SNAPSHOT_URL=$(curl -s https://www.swift.org/builds/development/ubuntu2204/latest-build.yml \
-            | grep 'download:' | grep 'ubuntu22.04' | awk '{print $2}' | tr -d '[:space:]')
-
-          # Ensure URL is found
-          if [ -z "$SNAPSHOT_URL" ]; then
-            echo "Error: Snapshot URL not found!"
-            exit 1
-          fi
-
-          # Download the snapshot
-          wget $SNAPSHOT_URL -O swift-latest.tar.gz
-
-          # Extract and install Swift
-          tar xzf swift-latest.tar.gz
-          sudo mv swift-*-ubuntu22.04 /usr/local/swift
-          echo "export PATH=/usr/local/swift/usr/bin:$PATH" >> $GITHUB_ENV
-
-      - name: Verify Swift version
-        run: swift --version
-
-      - name: Build project
-        run: swift build
-
-      - name: Run tests
-        run: swift test
+          swift build
+          swift test
