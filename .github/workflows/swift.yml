@@ -12,14 +12,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout source code
         uses: actions/checkout@v3
-      - name: Set up Swift
+
+      - name: Set up Swift 6.0.0
         uses: swift-actions/setup-swift@v1
         with:
-          swift-version: '5.7'
-      - name: Build and Test
-        run: |
-          swift build
-          swift test
+          swift-version: '6.0.0'  # Specify the required Swift version
+
+      - name: Verify Swift version
+        run: swift --version
+
+      - name: Build project
+        run: swift build
+
+      - name: Run tests
+        run: swift test
