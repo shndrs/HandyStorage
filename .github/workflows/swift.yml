@@ -17,11 +17,18 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
 
-      - name: Install Swift development snapshot
+      - name: Download and Install Latest Swift Snapshot
         run: |
-          wget https://download.swift.org/development/ubuntu2204/swift-DEVELOPMENT-SNAPSHOT-2024-05-20-a/swift-DEVELOPMENT-SNAPSHOT-2024-05-20-a-ubuntu22.04.tar.gz
-          tar xzf swift-DEVELOPMENT-SNAPSHOT-2024-05-20-a-ubuntu22.04.tar.gz
-          sudo mv swift-DEVELOPMENT-SNAPSHOT-2024-05-20-a-ubuntu22.04 /usr/local/swift
+          # Fetch the latest snapshot URL for Ubuntu 22.04
+          SNAPSHOT_URL=$(curl -s https://www.swift.org/builds/development/ubuntu2204/latest-build.yml \
+            | grep 'download:' | grep 'ubuntu22.04' | awk '{print $2}')
+          
+          # Download the snapshot
+          wget $SNAPSHOT_URL -O swift-latest.tar.gz
+
+          # Extract and install Swift
+          tar xzf swift-latest.tar.gz
+          sudo mv swift-*-ubuntu22.04 /usr/local/swift
           echo "export PATH=/usr/local/swift/usr/bin:$PATH" >> $GITHUB_ENV
 
       - name: Verify Swift version
