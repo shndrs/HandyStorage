@@ -14,7 +14,7 @@ public extension Encodable {
         let object = try JSONSerialization.jsonObject(with: data)
         guard let json = object as? [String: Any] else {
             let context = DecodingError.Context(codingPath: [],
-                                                debugDescription: "Deserialized object is not a dictionary")
+                                                debugDescription: "HandyStorage: Deserialized object is not a dictionary")
             throw DecodingError.typeMismatch(type(of: object), context)
         }
         return json
