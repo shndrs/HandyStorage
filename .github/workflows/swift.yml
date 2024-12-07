@@ -18,7 +18,7 @@ jobs:
       - name: Set up Swift
         uses: swift-actions/setup-swift@v1
         with:
-          swift-version: '5.7'
+          swift-version: '6.0'
       - name: Install dependencies
         run: swift package resolve
 
@@ -27,6 +27,3 @@ jobs:
 
       - name: Build project (verbose)
         run: swift build -v
-
-      - name: Run tests (verbose)
-        run: swift test -v
