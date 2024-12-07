@@ -19,7 +19,14 @@ jobs:
         uses: swift-actions/setup-swift@v1
         with:
           swift-version: '5.7'
-      - name: Build and Test
-        run: |
-          swift build -v
-          swift test -v
+      - name: Install dependencies
+        run: swift package resolve
+
+      - name: Clean the project
+        run: swift package clean
+
+      - name: Build project (verbose)
+        run: swift build -v
+
+      - name: Run tests (verbose)
+        run: swift test -v
