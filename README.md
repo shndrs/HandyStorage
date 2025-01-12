@@ -76,7 +76,7 @@ pod install
 ![spm-lg](https://github.com/user-attachments/assets/51a6b069-f05d-4152-a73c-9c9bc6e6eb56)
 - File > Swift Packages > Add Package Dependency
 - Add `https://github.com/shndrs/HandyStorage.git`
-- Select "Up to Next Major" with "1.0.2"
+- Select "Up to Next Major" with "1.0.3"
 
 Author
 =======

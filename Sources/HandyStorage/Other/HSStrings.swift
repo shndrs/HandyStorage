@@ -11,5 +11,6 @@ struct HSStrings {
     static let databaseUpdateError = "Database UPDATE error"
     static let databaseSaveError = "Database SAVE error"
     static let databaseDeleteError = "Database DELETE error"
+    static let deserializedError = "HandyStorage: Deserialized object is not a dictionary"
     
 }
