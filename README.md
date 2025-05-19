@@ -10,7 +10,8 @@
 ![Min iOS Version](https://img.shields.io/badge/iOS_Version-13%2B-yellow)
 ![Min macOS Version](https://img.shields.io/badge/macOS_Version-10.15%2B-yellow)
 
-In this project i wanna build an useful thread-safe storage with UserDefault which is super easy to deal with and on top of that you can save `Codable` Objects 
+In Handy Storage i built an useful thread-safe storage using actors and Swift Concurrency which prevents race conditions. It's super easy to deal with and on top of that you can save `Codable` Objects permanently.
+
 ### HOW COOL IS THAT! 🙂
 # Usage
 It's pretty simple, just follow these instructions and you have it,
