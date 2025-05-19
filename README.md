@@ -7,7 +7,7 @@
 ![swift package manager](https://img.shields.io/badge/SwiftPackageManager-compatible-000000.svg)
 ![cocoapods](https://img.shields.io/badge/CocoaPods-compatible-000000.svg)
 ![GitHub License](https://img.shields.io/github/license/shndrs/HandyStorage)
-![Min iOS Version](https://img.shields.io/badge/iOS_Version-12%2B-yellow)
+![Min iOS Version](https://img.shields.io/badge/iOS_Version-13%2B-yellow)
 ![Min macOS Version](https://img.shields.io/badge/macOS_Version-10.15%2B-yellow)
 
 In this project i wanna build an useful thread-safe storage with UserDefault which is super easy to deal with and on top of that you can save `Codable` Objects 
