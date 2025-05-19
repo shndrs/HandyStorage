@@ -22,9 +22,12 @@ final public class HandyStorageCore: NSObject {
     
     subscript(key: String) -> String? {
         get {
+            defaults.synchronize()
             return defaults.string(forKey: key)
         } set {
+            defaults.synchronize()
             defaults.set(newValue, forKey: key)
+            defaults.synchronize()
         }
     }
     
