@@ -11,6 +11,10 @@ import Foundation
 
 final public class HandyStorageCore: NSObject {
     
+    public var current: UserDefaults {
+        return defaults
+    }
+    
     private let defaults: UserDefaults
     
     init(defaults: UserDefaults = .standard) {

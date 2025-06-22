@@ -10,8 +10,7 @@
 ![Min iOS Version](https://img.shields.io/badge/iOS_Version-13%2B-yellow)
 ![Min macOS Version](https://img.shields.io/badge/macOS_Version-10.15%2B-yellow)
 
-In Handy Storage i built an useful thread-safe storage using actors and Swift Concurrency which prevents race conditions. It's super easy to deal with and on top of that you can save `Codable` Objects permanently.
-
+In this project i wanna build an useful thread-safe storage with UserDefault which is super easy to deal with and on top of that you can save `Codable` Objects 
 ### HOW COOL IS THAT! 🙂
 # Usage
 It's pretty simple, just follow these instructions and you have it,
@@ -25,42 +24,70 @@ struct User: Codable {
 ## Save/Insert
 This will add a new object to "user-table"
 ```Swift
-let user = User(username: "Walter", password: "123456")
-
-await HandyStorage.shared.save(object: user, key: "user-table")
+Task {
+    let user = User(username: "Walter", password: "123456")
+    await HandyStorage.shared.save(object: user, key: "user-table")
+}
 ```
 ## Load
 Get all users from "user-table"
-```Swift     
-let users: [User] = await HandyStorage.shared.load(key: "user-table")
+```Swift
+Task {
+    let users: [User] = await HandyStorage.shared.load(key: "user-table")
+}     
 ```
 ## Update
 Update a specific object with new one
 ```Swift
-let oldUser: User = await HandyStorage.shared.load(key: "user-table").first
-let newUser = HSUser(username: "Harvey", password: "654321")
-
-await HandyStorage.shared.update(oldObject: oldUser, newObject: newUser, key: "user-table")
+Task {
+    let oldUser: User = await HandyStorage.shared.load(key: "user-table").first
+    let newUser = HSUser(username: "Harvey", password: "654321")
+    await HandyStorage.shared.update(oldObject: oldUser, newObject: newUser, key: "user-table")
+}
 ```
 ## Save/Insert an array of objects
 ```Swift
-let user0 = User(username: "Jessica", password: "123456")
-let user1 = User(username: "Harvey", password: "654321")
-let user2 = User(username: "Mike", password: "321456")
-
-await HandyStorage.shared.saveArray(arrayObject: [user0, user1, user2], key: "user-table")
+Task {
+    let user0 = User(username: "Jessica", password: "123456")
+    let user1 = User(username: "Harvey", password: "654321")
+    let user2 = User(username: "Mike", password: "321456")
+    await HandyStorage.shared.saveArray(arrayObject: [user0, user1, user2], key: "user-table")
+}
 ```
 ## Delete Item
 ```Swift
-let user: User = HandyStorage.shared.load(key: "user-table").first
-
-await HandyStorage.shared.delete(object: user, key: "user-table")
+Task {
+    let user: User = HandyStorage.shared.load(key: "user-table").first
+    await HandyStorage.shared.delete(object: user, key: "user-table")
+}
 ```
 ## Delete Entire Table
 This will delete whole "user-table"
 ```Swift
-await HandyStorage.shared.delete(table: "user-table")
+Task {
+    await HandyStorage.shared.delete(table: "user-table")
+}
 ```
+
+## Delete Entire HandyStorage Data
+
+```Swift
+Task {
+    await HandyStorage.shared.removeAll()
+}
+```
+
+## Save/Load single String
+
+```Swift
+Task {
+    // Save
+    await HandyStorage.shared.saveString(value: "Apple iMac M4", key: "system-model")
+    // Load
+    let singleString = await HandyStorage.shared.getString(key: "system-model")
+}
+```
+
 Installation
 =======
 

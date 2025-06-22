@@ -36,6 +36,14 @@ import Testing
         let carsArray: [HSCar] = await HandyStorage.shared.load(key: carTable)
         #expect(carsArray.count == 3)
         #expect(carsArray.last?.name == "Alfa Romeo")
+        /// - Note: Remove Entire Storage
+        await HandyStorage.shared.removeAll()
+        let cars: [HSCar] = await HandyStorage.shared.load(key: carTable)
+        let users: [HSUser] = await HandyStorage.shared.load(key: userTable)
+        #expect(cars.count == 0 && users.count == 0)
+        await HandyStorage.shared.saveString(value: "Apple iMac M4", key: "system-model")
+        let singleString = await HandyStorage.shared.getString(key: "system-model")
+        #expect(singleString == "Apple iMac M4")
     }
 }
 

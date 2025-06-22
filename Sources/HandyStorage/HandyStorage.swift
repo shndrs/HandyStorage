@@ -36,7 +36,7 @@ extension HandyStorage {
     }
     
     // MARK: - Saving Array Object
-    /// - NOTE: By saving the your array the privious table data will be replace by your array
+    /// - NOTE: By saving your array the privious table data will be replace by your array
     /// then be careful with this method
     
     public func saveArray<T>(arrayObject: [T],
@@ -109,6 +109,31 @@ extension HandyStorage {
     
     public func delete(table: String) {
         core[table] = nil
+    }
+    
+    // MARK: - Remove Entire UserDefaults
+    /// - Note: This will remove entire UserDefaults, USE IT CAREFULLY!
+    
+    func removeAll(callback: HSAction? = nil) {
+        let dictionary = core.current.dictionaryRepresentation()
+        dictionary.keys.forEach { key in
+            core.current.removeObject(forKey: key)
+        }
+        callback?()
+    }
+    
+    // MARK: - Save single String
+    /// - Note: If you wanna save single string object and do not use a Codable object
+    ///         use this method istead
+    
+    func saveString(value: String, key: String) {
+        core[key] = value
+    }
+    
+    // MARK: - Get single String
+    
+    func getString(key: String) -> String? {
+        return core[key]
     }
     
 }

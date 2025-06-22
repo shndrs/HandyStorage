@@ -6,3 +6,4 @@
 //
 
 public typealias HSCallback = (_ result: Bool, _ error: String?) -> Void
+public typealias HSAction = () -> Void
