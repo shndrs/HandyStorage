@@ -114,7 +114,7 @@ extension HandyStorage {
     // MARK: - Remove Entire UserDefaults
     /// - Note: This will remove entire UserDefaults, USE IT CAREFULLY!
     
-    func removeAll(callback: HSAction? = nil) {
+    public func removeAll(callback: HSAction? = nil) {
         let dictionary = core.current.dictionaryRepresentation()
         dictionary.keys.forEach { key in
             core.current.removeObject(forKey: key)
@@ -122,18 +122,39 @@ extension HandyStorage {
         callback?()
     }
     
-    // MARK: - Save single String
-    /// - Note: If you wanna save single string object and do not use a Codable object
-    ///         use this method istead
+    // MARK: - Save single
+    /// - Note: If you wanna save single value type and do not use a Codable object
+    ///         use this method instead
     
-    func saveString(value: String, key: String) {
-        core[key] = value
+    public func saveSingle(key: String, value: Any) {
+        core.current.setValue(value, forKey: key)
     }
     
-    // MARK: - Get single String
-    
-    func getString(key: String) -> String? {
-        return core[key]
+    // MARK: - Get single
+    /// - Note: Example
+    /// This will return HandyStorageSingleValue type
+    ///    let value = HandyStorage.shared.loadSingle(key: .language,
+    ///                                    type: .string)
+    /// This will return String
+    ///    guard case .string(let language) = HandyStorage.shared
+    ///        .loadSingle(key: .language, type: .string) else { return }
+    public func loadSingle(key: String, type: HandyStorageSingleType) -> HandyStorageSingleValue? {
+        switch type {
+        case .bool:
+            return .bool(core.current.bool(forKey: key))
+        case .integer:
+            return .integer(core.current.integer(forKey: key))
+        case .array:
+            return .array(core.current.array(forKey: key) ?? [])
+        case .string:
+            return .string(core.current.string(forKey: key) ?? HSStrings.empty)
+        case .double:
+            return .double(core.current.double(forKey: key))
+        case .float:
+            return .float(core.current.float(forKey: key))
+        case .data:
+            return .data(core.current.data(forKey: key) ?? Data())
+        }
     }
     
 }

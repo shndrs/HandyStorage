@@ -7,6 +7,7 @@
 
 struct HSStrings {
     
+    static let empty = ""
     static let databaseFetchError = "Database FETCH error"
     static let databaseUpdateError = "Database UPDATE error"
     static let databaseSaveError = "Database SAVE error"

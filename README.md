@@ -10,7 +10,7 @@
 ![Min iOS Version](https://img.shields.io/badge/iOS_Version-13%2B-yellow)
 ![Min macOS Version](https://img.shields.io/badge/macOS_Version-10.15%2B-yellow)
 
-In this project i wanna build an useful thread-safe storage with UserDefault which is super easy to deal with and on top of that you can save `Codable` Objects 
+In this framework i wanna build an useful thread-safe storage with UserDefault which is super easy to deal with and on top of that you can save `Codable` Objects 
 ### HOW COOL IS THAT! 🙂
 # Usage
 It's pretty simple, just follow these instructions and you have it,
@@ -82,9 +82,12 @@ Task {
 ```Swift
 Task {
     // Save
-    await HandyStorage.shared.saveString(value: "Apple iMac M4", key: "system-model")
+        await HandyStorage.shared.saveSingle(key: "isJWTEnable",
+                                             value: true)
     // Load
-    let singleString = await HandyStorage.shared.getString(key: "system-model")
+        if case .bool(let value) = await HandyStorage.shared.loadSingle(key: "isJWTEnable", type: .bool) {
+            #expect(value == true)
+        }
 }
 ```
 

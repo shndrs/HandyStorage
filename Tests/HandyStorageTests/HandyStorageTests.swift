@@ -41,9 +41,12 @@ import Testing
         let cars: [HSCar] = await HandyStorage.shared.load(key: carTable)
         let users: [HSUser] = await HandyStorage.shared.load(key: userTable)
         #expect(cars.count == 0 && users.count == 0)
-        await HandyStorage.shared.saveString(value: "Apple iMac M4", key: "system-model")
-        let singleString = await HandyStorage.shared.getString(key: "system-model")
-        #expect(singleString == "Apple iMac M4")
+        /// - Note: Save Single Type (Boolean)
+        await HandyStorage.shared.saveSingle(key: "isJWTEnable",
+                                             value: true)
+        if case .bool(let value) = await HandyStorage.shared.loadSingle(key: "isJWTEnable", type: .bool) {
+            #expect(value == true)
+        }
     }
 }
 

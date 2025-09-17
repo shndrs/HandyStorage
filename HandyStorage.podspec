@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name = "HandyStorage"
-  spec.version = "2.0.2"
+  spec.version = "2.1.0"
   spec.summary = "If you wanna get rid of Huge Databases for your app, just install HandyStorage and enjoy the simplicity."
   spec.description  = <<-DESC
     HandyStorage is a wrapper over UserDefaults which act like a LightStorage and work with Codable classes...Trust me it's really handy 😊😊 -shndrs
