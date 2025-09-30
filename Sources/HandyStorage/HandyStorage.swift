@@ -3,6 +3,7 @@
 
 import Foundation
 
+@available(iOS 13.0.0, *)
 final public actor HandyStorage: NSObject {
     
     public static let shared = HandyStorage()
@@ -17,6 +18,7 @@ final public actor HandyStorage: NSObject {
 
 // MARK: - Methods
 
+@available(iOS 13.0.0, *)
 extension HandyStorage {
     
     // MARK: - Saving Object

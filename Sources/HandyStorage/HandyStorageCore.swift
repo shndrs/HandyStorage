@@ -25,6 +25,9 @@ final public class HandyStorageCore: NSObject {
     ///
     
     subscript(key: String) -> String? {
+        /// - Note: `synchronize()` is a method that forces UserDefaults to write any unsaved changes to disk immediately.
+        ///         Normally, UserDefaults saves changes automatically at periodic intervals or when the app goes to the background
+        ///         `synchronize()` It blocks the current thread until the write is complete
         get {
             defaults.synchronize()
             return defaults.string(forKey: key)
