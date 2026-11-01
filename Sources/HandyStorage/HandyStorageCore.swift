@@ -22,7 +22,6 @@ final public class HandyStorageCore: NSObject {
     }
     
     // MARK: - Get and Set String Data to Database
-    ///
     
     subscript(key: String) -> String? {
         /// - Note: `synchronize()` is a method that forces UserDefaults to write any unsaved changes to disk immediately.

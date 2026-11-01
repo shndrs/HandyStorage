@@ -65,17 +65,23 @@ extension HandyStorage {
                           callback: HSCallback? = nil) where T: Codable {
         if let objectString = core[key] {
             var codableArray: [T] = objectString.fromJsonArray() ?? []
-            if codableArray.contains(where: {(try? $0.toJSONString()) == (try? object.toJSONString())}) {
+            let filteredArray = codableArray.filter({(try? $0.toJSONString()) == (try? object.toJSONString())})
+            sleep(1)
+            if filteredArray.count != 0 {
                 guard let index = codableArray
-                    .firstIndex(where: {(try? $0.toJSONString()) == (try? object.toJSONString())}) else {
+                    .lastIndex(where: {(try? $0.toJSONString()) == (try? object.toJSONString())}) else {
                     callback?(false, HSStrings.databaseDeleteError)
                     return
                 }
                 codableArray.remove(at: index)
                 core[key] = try? codableArray.toJSONString()
-                callback?(true, nil)
+                DispatchQueue.main.async {
+                    callback?(true, nil)
+                }
             } else {
-                callback?(false, HSStrings.databaseDeleteError)
+                DispatchQueue.main.async {
+                    callback?(false, HSStrings.databaseDeleteError)
+                }
             }
         } else {
             callback?(false, HSStrings.databaseDeleteError)
