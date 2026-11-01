@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.license = { :type => "MIT", :file => "LICENSE" }
   spec.author = { "shndrs" => "sahandraeisi1994@gmail.com" }
   spec.ios.deployment_target = "13.0"
-  spec.osx.deployment_target = '10.15'
+  spec.osx.deployment_target = '12.0'
   spec.swift_version = "6"
   spec.source = { :git => "https://github.com/shndrs/HandyStorage.git", :tag => "#{spec.version}" }
   spec.source_files = "Sources/**/*.swift"
